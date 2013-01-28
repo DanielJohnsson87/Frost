@@ -37,7 +37,10 @@ $ly->config['language'] = 'en';
 
 $ly->config['controllers'] = array(
 	'index'		=> array('enabled' => true,
-						 'class' => 'CCIndex')
+						 'class' => 'CCIndex'),
+	'developer'		=> array('enabled' => true,
+						 'class' => 'CCDeveloper')
+
 	);
 
 /**

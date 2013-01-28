@@ -4,10 +4,6 @@
 *
 * @package LydiaCore
 */
-
-
-
-
 class CRequest {
 
 	/**

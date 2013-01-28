@@ -34,12 +34,9 @@ class CLydia implements ISingleton {
 * Frontcontroller, check url and rout to controllers
 */			
 public function FrontControllerRoute() {
-	// Debug info
-	$this->data['debug']  = "REQUEST_URI - {$_SERVER['REQUEST_URI']}\n";
-	$this->data['debug'] .= "SCRIPT_NAME - {$_SERVER['SCRIPT_NAME']}\n";
 
 	// Take current url and divide it in controller, method and parameters
-	$this->request = new CRequest();
+	$this->request = new CRequest($this->config['url_type']);
 	$this->request->Init($this->config['base_url']);
 
 	$controller 	= $this->request->controller;
@@ -59,23 +56,27 @@ public function FrontControllerRoute() {
 	}
 
 	// Check if there is a callable method in the controller class, if then call it
-	if($controllerExists && $controllerEnabled && $classExists) {
-		$rc = new ReflectionClass($className);
-		if($rc->implementsInterface('IController')) {
-			if($rc->hasMethod($method)) {
-				$controllerObj = $rc->newInstance();
-				$methodObj = $rc->getMethod($method);
-				$methodObj->invokeArgs($controllerObj, $arguments);
-
-			} else {
-				die("404. " . get_class() . ' error: Controller does not contain method');
-			}
-		} else {
-				die('404. ' . get_class() . ' error: Controller does not implement interface IController.');
-		}
-	} else {
-		die('404. Page is not found.');
-	}
+    if($controllerExists && $controllerEnabled && $classExists) {
+      $rc = new ReflectionClass($className);
+      if($rc->implementsInterface('IController')) {
+        if($rc->hasMethod($method)) {
+          $controllerObj = $rc->newInstance();
+          $methodObj = $rc->getMethod($method);
+          if($methodObj->isPublic()) {
+            $methodObj->invokeArgs($controllerObj, $arguments);
+          } else {
+            die("404. " . get_class() . ' error: Controller method not public.');          
+          }
+        } else {
+          die("404. " . get_class() . ' error: Controller does not contain method.');
+        }
+      } else {
+        die('404. ' . get_class() . ' error: Controller does not implement interface IController.');
+      }
+    } 
+    else { 
+      die('404. Page is not found.');
+    }
 
 
 }
