@@ -1,6 +1,6 @@
 <?php
 /**
-*Site config, this file is changed by user per site
+*Site config, this file is changed by the user per site
 *
 */
 
@@ -18,12 +18,21 @@ $ly->config['session_name'] = preg_replace('/[:\.\/-_]/', '', $_SERVER["SERVER_N
 /*
 * Define server timezone
 */
+$ly->config['timezone'] = 'Europe/Stockholm';
+/*
+* Define character encoding
+*/
 $ly->config['character_encoding'] = 'UTF-8';
 
 /*
 * Define Language
 */
 $ly->config['language'] = 'en';
+
+/*
+* Set session key
+*/
+$ly->config['session_key'] = 'lydia';
 
 /**
 * Define the controllers, their classname and enable/disable them.
@@ -39,7 +48,9 @@ $ly->config['controllers'] = array(
 	'index'		=> array('enabled' => true,
 						 'class' => 'CCIndex'),
 	'developer'		=> array('enabled' => true,
-						 'class' => 'CCDeveloper')
+						 'class' => 'CCDeveloper'),
+	'guestbook'		=> array('enabled' => true,
+							'class' => 'CCGuestbook')
 
 	);
 
@@ -64,3 +75,22 @@ $ly->config['base_url'] = null;
 * querystring 	= 2 	=> index.php?q=controller/method/arg1/arg2/arg3
 */
 $ly->config['url_type'] = 1;
+
+
+
+
+
+    /**
+    * Set what to show as debug or developer information in the get_debug() theme helper.
+    */
+    $ly->config['debug']['lydia'] = true;
+    $ly->config['debug']['db-num-queries'] = true;
+    $ly->config['debug']['db-queries'] = true;
+    $ly->config['debug']['session'] = true;
+
+/**
+* What database do you want to use?
+* Configurate your settings
+*/
+$ly->config['database'][0]['dsn'] = 'sqlite:' . LYDIA_SITE_PATH . '/data/.ht.sqlite';
+

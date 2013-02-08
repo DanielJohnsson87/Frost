@@ -2,7 +2,7 @@
 /**
 * Parse the request and identify controller, method and arguments.
 *
-* @package LydiaCore
+* @package FrostCore
 */
 class CRequest {
 
@@ -28,7 +28,8 @@ class CRequest {
 	}
 
 	  /**
-      * Create a url in the way it should be created.
+      * Create a url in the way it should be created according to the
+      * settings we made in config.php. Example: $ly->config['url_type'] = 1;
       *
       */
       public function CreateUrl($url=null) {

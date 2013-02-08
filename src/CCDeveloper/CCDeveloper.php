@@ -1,11 +1,19 @@
- <?php
+<?php
 /**
  * Controller for development and testing purpose, helpful methods for the developer.
  * 
- * @package LydiaCore
+ * @package FrostCore
  */
-class CCDeveloper implements IController {
+class CCDeveloper extends CObject implements IController {
 
+
+/**
+* Constructor
+*/
+public function __construct() {
+
+  parent::__construct();
+}
   /**
     * Implementing interface IController. All controllers must have an index action.
    */
@@ -19,24 +27,23 @@ class CCDeveloper implements IController {
    */
   public function Links() {  
     $this->Menu();
-    
-    $ly = CLydia::Instance();
+
     
     $url = 'developer/links';
-    $current      = $ly->request->CreateUrl($url);
+    $current      = $this->request->CreateUrl($url);
 
-    $ly->request->cleanUrl = false;
-    $ly->request->querystringUrl = false;    
-    $default      = $ly->request->CreateUrl($url);
+    $this->request->cleanUrl = false;
+    $this->request->querystringUrl = false;    
+    $default      = $this->request->CreateUrl($url);
     
-    $ly->request->cleanUrl = true;
-    $clean        = $ly->request->CreateUrl($url);    
+    $this->request->cleanUrl = true;
+    $clean        = $this->request->CreateUrl($url);    
     
-    $ly->request->cleanUrl = false;
-    $ly->request->querystringUrl = true;    
-    $querystring  = $ly->request->CreateUrl($url);
+    $this->request->cleanUrl = false;
+    $this->request->querystringUrl = true;    
+    $querystring  = $this->request->CreateUrl($url);
     
-    $ly->data['main'] .= <<<EOD
+    $this->data['main'] .= <<<EOD
 <h2>CRequest::CreateUrl()</h2>
 <p>Here is a list of urls created using above method with various settings. All links should lead to
 this same page.</p>
@@ -56,7 +63,7 @@ EOD;
    */
   private function Menu() {  
     $ly = CLydia::Instance();
-    $menu = array('developer', 'developer/index', 'developer/links');
+    $menu = array('developer', 'developer/index', 'developer/links', 'developer/display-object');
     
     $html = null;
     foreach($menu as $val) {
@@ -72,5 +79,18 @@ $html
 </ul>
 EOD;
   }
+
+public function DisplayObject() {
+  $this->menu();
+
+  $this->data['main'] .=<<<EOD
+  <h2>Dumping content of CDeveloper</h2>
+  <p>Here is the content of the controller, including properties from CObjevt which holds 
+  acces to common resources in CLydia.</p>
+EOD;
+
+$this->data['main'] .= '<pre>' . htmlentities(print_r($this, true)) . '</pre>';
+
+}
   
 }  
