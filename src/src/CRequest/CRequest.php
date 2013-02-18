@@ -1,8 +1,6 @@
 <?php
 /**
 * Parse the request and identify controller, method and arguments.
-* Don't forget to edit "Redirect all requests to index.php" in ht.access file if
-* Installed on a new path.
 *
 * @package FrostCore
 */

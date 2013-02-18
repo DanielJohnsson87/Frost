@@ -2,12 +2,61 @@
 /**
 * Helpers for the template file
 */
+// -------------------------------------------------------------------------------------------
+//
+// Common header
+//
+$ly->data['logo'] = theme_url('img/logo-small.png');
+$ly->data['base_url'] = base_url();
+$ly->data['header'] = <<<EOD
+<div class="top-row"></div>
+<header class="header-container clear">
+<div class="logo"><a href="index.php"><img src="{$ly->data['logo']}"></a></div>
 
-$ly->data['header'] = '<h1>Header: Frost</h1>';
+                <nav>
+                    <ul>
+                        <li><a id="Index-" href="{$ly->data['base_url']}index">Hem</a></li>
+                        <li><a id="Report-" href="{$ly->data['base_url']}guestbook">Guestbook</a></li>
+                        <li><a id="Presentation-" href="{$ly->data['base_url']}developer">Developer</a></li>
+                        <li><a id="Source-" href="{$ly->data['base_url']}user">User</a></li>
+                    </ul>
+                </nav>
+                        <div class="clear"></div>
+
+        </header>
+EOD;
+// -------------------------------------------------------------------------------------------
+//
+// Common footer
+//
+
 $ly->data['footer'] = <<<EOD
-<p>Footer: &copy; Frost by Daniel Johnsson</p>
+  <div class="footer-container">
+<section>
+<h1> Vem är jag?</h1>
+<p>Mitt namn är Daniel Johnsson. Jag är 25 år och kommer ifrån Båstad.
+Jag studerar just webbprogrammering på BTH....</p>
+<a href="#">Läs mer &rarr;</a>
+</section>
 
-<p>Tools: 
+<section>
+<h1> Uppgifter</h1>
+<p>På den här sidan sparar jag alla mina arbeten som jag gör i kursen PHP & MVC. Är
+du nyfiken så är de bara att spana in... </p>
+<a href="#">Läs mer &rarr;</a>
+</section>
+
+<section>
+<h1> Kontakta mig</h1>
+<p>Skulle du vilja komma i kontakt med mig så når du mig på irc.bsnet.se nick: DanielJ 
+eller så kan du maila mig på Danne_j87@hotmail.com</p>
+<a href="mailto:danne_j87@hotmail.com">Kontakta mig &rarr;</a>
+</section>
+<div class="clear"></div>
+<p class="center-text"> En sida av Daniel Johnsson, Student på BTH 2012-2013.</p>
+        </div>
+
+<p class="center-text">Tools: 
 <a href="http://validator.w3.org/check/referer">html5</a>
 <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">css3</a>
 <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css21">css21</a>
@@ -22,7 +71,7 @@ $ly->data['footer'] = <<<EOD
 <a href="http://dbwebb.se/style">style</a>
 </p>
 
-<p>Docs:
+<p class="center-text">Docs:
 <a href="http://www.w3.org/2009/cheatsheet">cheatsheet</a>
 <a href="http://dev.w3.org/html5/spec/spec.html">html5</a>
 <a href="http://www.w3.org/TR/CSS2">css2</a>

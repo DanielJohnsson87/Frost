@@ -35,16 +35,6 @@ $ly->config['language'] = 'en';
 $ly->config['session_key'] = 'lydia';
 
 /**
-* How to hash password of new users, choose from plain, md5salt, md5, sha1salt, sha1.
-*/
-$ly->config['hashing_algorithm'] = 'sha1salt';
-
-/**
-* Allow or disable creation of new user accounts.
-*/
-$ly->config['create_new_users'] = 'true';
-
-/**
 * Define the controllers, their classname and enable/disable them.
 *
 * The array-key is matched against the url, for example:
@@ -62,9 +52,7 @@ $ly->config['controllers'] = array(
 	'guestbook'		=> array('enabled' => true,
 							'class' => 'CCGuestbook'),
 	'user'			=> array('enabled' => true,
-							'class' => 'CCUser'),
-	'acp'			=> array('enabled' => true,
-							'class' => 'CCAdminControlPanel')
+							'class' => 'CCUser')
 
 	);
 

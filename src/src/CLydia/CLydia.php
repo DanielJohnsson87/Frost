@@ -35,10 +35,6 @@ class CLydia implements ISingleton {
 
     //Create a container for all views and theme data
     $this->views = new CViewContainer();
-
-    //Create a object for the user(To avoid circular behavior in the constructors)
-    // http://dbwebb.se/forum/viewtopic.php?t=282
-    $this->user = new CMUser($this);
   }
 
   /**
@@ -120,7 +116,7 @@ public function FrontControllerRoute() {
       }
     } 
     else { 
-      die('404. Page is not found.');
+      die('404. Page is not found...this is me3');
     }
 
 

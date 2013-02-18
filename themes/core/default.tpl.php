@@ -6,16 +6,16 @@
   <link rel="stylesheet" href="<?=$stylesheet?>">
 </head>
 <body>
-  <div id="header">
     <?=$header?>
-  </div>
-  <div id="main" role="main">
-    <?=get_messages_from_session()?>
-    <?=render_views()?>
-    <?=get_debug()?>
-  </div>
-  <div id="footer">
+<div class="content-head-wrapper index-content-wrapper">
+<div class="content-head">
+
+    
+   <?=render_views()?>
+
+</div> <!-- Content-head -->
+</div> <!-- content-head-Wrapper -->
+
     <?=$footer?>
-  </div>
 </body>
 </html>
