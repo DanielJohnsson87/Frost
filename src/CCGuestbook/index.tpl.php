@@ -5,7 +5,7 @@
 <form action="<?=$formAction?>" method='post'>
   <p>
     <label>Message: <br/>
-    <textarea name='newEntry'></textarea></label>
+    <textarea name='newEntry' rows='10' cols='50'></textarea></label>
   </p>
   <p>
     <input type='submit' name='doAdd' value='Add message' />
@@ -14,10 +14,10 @@
   </p>
 </form>
 
-<h2>Current messages</h2>
+<h3>Current messages</h3>
 
 <?php foreach($entries as $val):?>
-<div style='background-color:#f6f6f6;border:1px solid #ccc;margin-bottom:1em;padding:1em;'>
+<div style='background-color:#ccc;border:1px solid #ccc;margin-bottom:1em;padding:1em;'>
   <p>At: <?=$val['created']?></p>
   <p><?=htmlent($val['entry'])?></p>
 </div>

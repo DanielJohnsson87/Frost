@@ -64,7 +64,13 @@ $ly->config['controllers'] = array(
 	'user'			=> array('enabled' => true,
 							'class' => 'CCUser'),
 	'acp'			=> array('enabled' => true,
-							'class' => 'CCAdminControlPanel')
+							'class' => 'CCAdminControlPanel'),
+	'content'		=> array('enabled' => true,
+							'class' => 'CCContent'),
+	'page'			=> array('enabled' => true,
+							'class' => 'CCPage'),
+	'blog'			=> array('enabled' => true,
+							'class' => 'CCBlog'),
 
 	);
 

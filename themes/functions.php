@@ -112,14 +112,24 @@ function login_menu() {
   $ly = CLydia::Instance();
   if($ly->user['isAuthenticated']) {
     $items = "<a href='" . create_url('user/profile') . "'><img src='" . get_gravatar(20) . "' alt''>" . $ly->user['acronym'] . "</a>";
-    if($ly->user['hasRoleAdministrator']) {
+    if($ly->user['hasRoleAdmin']) {
       $items .= "<a href='" . create_url('acp') . "'> acp</a> ";
     }
     $items .= "<a href='" . create_url('user/logout') . "'> logout</a>";
   } else {
     $items = "<a href='" . create_url('user/login') . "'> login</a>";
   }
-  return "<nav>$items</nav>";
+  return "<div class='login_menu'>$items</div>";
+}
+
+/**
+* Escape data to make it safe to write in the browser.
+*
+* @param $str string to escape.
+* @returns string the escaped string.
+*/
+function esc($str) {
+  return htmlEnt($str);
 }
 
 /**
@@ -128,4 +138,11 @@ function login_menu() {
 function get_gravatar($size=null) {
   return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim(CLydia::Instance()->user['email']))) . '.jpg?r=pg&amp;d=wavatar&amp;' . ($size ? "s=$size" : null);
 
+}
+
+/**
+* Filter data 
+*/
+function filter_data($data, $filter) {
+  return CMContent::Filter($data, $filter);
 }

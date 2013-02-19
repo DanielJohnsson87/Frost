@@ -6,23 +6,24 @@
 //
 // Common header
 //
-$ly->data['logo'] = theme_url('img/logo-small.png');
-$ly->data['base_url'] = base_url();
+$logo = theme_url('img/logo-small.png');
+$base_url = base_url();
+$menu = login_menu();
 $ly->data['header'] = <<<EOD
 <div class="top-row"></div>
 <header class="header-container clear">
-<div class="logo"><a href="index.php"><img src="{$ly->data['logo']}"></a></div>
-
+{$menu}
+<div class="logo"><a href="index.php"><img src="{$logo}"></a></div>
                 <nav>
                     <ul>
-                        <li><a id="Index-" href="{$ly->data['base_url']}index">Hem</a></li>
-                        <li><a id="Report-" href="{$ly->data['base_url']}guestbook">Guestbook</a></li>
-                        <li><a id="Presentation-" href="{$ly->data['base_url']}developer">Developer</a></li>
-                        <li><a id="Source-" href="{$ly->data['base_url']}user">User</a></li>
+                        <li><a id="Index-" href="{$base_url}index">Hem</a></li>
+                        <li><a id="Report-" href="{$base_url}guestbook">Guestbook</a></li>
+                        <li><a id="Presentation-" href="{$base_url}developer">Developer</a></li>
+                        <li><a id="Source-" href="{$base_url}user">User</a></li>
+                        <li><a id="Content-" href="{$base_url}content">Content</a></li>
                     </ul>
                 </nav>
                         <div class="clear"></div>
-
         </header>
 EOD;
 // -------------------------------------------------------------------------------------------

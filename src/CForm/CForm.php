@@ -10,6 +10,7 @@ class CFormElement implements ArrayAccess{
    * Properties
    */
   public $attributes;
+  public $characterEncoding;
   
 
   /**
@@ -19,8 +20,13 @@ class CFormElement implements ArrayAccess{
    * @param array attributes to set to the element. Default is an empty array.
    */
   public function __construct($name, $attributes=array()) {
-    $this->attributes = $attributes;    
+     $this->attributes = $attributes;
     $this['name'] = $name;
+    if(is_callable('CLydia::Instance()')) {
+      $this->characterEncoding = CLydia::Instance()->config['character_encoding'];
+    } else {
+      $this->characterEncoding = 'UTF-8';
+    }
   }
   
   
@@ -49,6 +55,7 @@ class CFormElement implements ArrayAccess{
     $autofocus = isset($this['autofocus']) && $this['autofocus'] ? " autofocus='autofocus'" : null;
     $readonly = isset($this['readonly']) && $this['readonly'] ? " readonly='readonly'" : null;
     $type = isset($this['type']) ? " type='{$this['type']}'" : null;
+    $onlyValue = isset($this['value']) ? htmlentities($this['value'], ENT_COMPAT, $this->characterEncoding) : null;
     $value = isset($this['value']) ? " value='{$this['value']}'" : null;
 
     $messages = null;
@@ -61,7 +68,11 @@ class CFormElement implements ArrayAccess{
     }
     
     if($type && $this['type'] == 'submit') {
-      return "<p><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></p>\n";  
+        return "<p><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></p>\n";
+    } else if($type && $this['type'] == 'textarea') {
+        return "<p><label for='$id'>$label</label><br><textarea id='$id'{$type}{$class}{$name}{$autofocus}{$readonly}>{$onlyValue}</textarea></p>\n";
+    } else if($type && $this['type'] == 'hidden') {
+        return "<input id='$id'{$type}{$class}{$name}{$value} />\n";
     } else {
       return "<p><label for='$id'>$label</label><br><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} />{$messages}</p>\n";  
     }
@@ -135,6 +146,33 @@ class CFormElementText extends CFormElement {
     parent::__construct($name, $attributes);
     $this['type'] = 'text';
     $this->UseNameAsDefaultLabel();
+  }
+}
+
+class CFormElementTextarea extends CFormElement {
+  /**
+  * Constructor
+  *
+  * @param string name of the element.
+  * @param array attributes to set to the element. Default is an empty array.
+  */
+  public function __construct($name, $attributes=array()) {
+    parent::__construct($name, $attributes);
+    $this['type'] = 'textarea';
+    $this->UseNameAsDefaultLabel();
+  }
+}
+
+class CFormElementHidden extends CFormElement {
+  /**
+  * Constructor
+  *
+  * @param string name of the element.
+  * @param array attributes to set to the element. Default is an empty array.
+  */
+  public function __construct($name, $attributes=array()) {
+    parent::__construct($name, $attributes);
+    $this['type'] = 'hidden';
   }
 }
 
@@ -251,11 +289,12 @@ EOD;
 *
 * @returns boolean true if validates, false if not validate, null if not submitted.
 */
-  public function Check() {
+    public function Check() {
     $validates = null;
+    $callbackStatus = null;
     $values = array();
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-      unset($_SESSION['form-validation-failed']);
+      unset($_SESSION['form-failed']);
       $validates = true;
       foreach($this->elements as $element) {
         if(isset($_POST[$element['name']])) {
@@ -263,29 +302,40 @@ EOD;
           if(isset($element['validation'])) {
             $element['validation-pass'] = $element->Validate($element['validation']);
             if($element['validation-pass'] === false) {
-              $values[$element['name']] = array('value'=>$element['value'], 'validation_messages'=>$element['validation_messages']);
+              $values[$element['name']] = array('value'=>$element['value'], 'validation-messages'=>$element['validation-messages']);
               $validates = false;
             }
           }
           if(isset($element['callback']) && $validates) {
-             call_user_func($element['callback'], $this);
+            if(isset($element['callback-args'])) {
+     if(call_user_func_array($element['callback'], array_merge(array($this), $element['callback-args'])) === false) {
+     $callbackStatus = false;
+     }
+   } else {
+              if(call_user_func($element['callback'], $this) === false) {
+     $callbackStatus = false;
+              }
+            }
           }
         }
       }
-    } else if(isset($_SESSION['form-validation-failed'])) {
-      foreach($_SESSION['form-validation-failed'] as $key => $val) {
+    } else if(isset($_SESSION['form-failed'])) {
+      foreach($_SESSION['form-failed'] as $key => $val) {
         $this[$key]['value'] = $val['value'];
-        if(isset($val['validation_messages'])) {
-          $this[$key]['validation_messages'] = $val['validation_messages'];
+        if(isset($val['validation-messages'])) {
+          $this[$key]['validation-messages'] = $val['validation-messages'];
           $this[$key]['validation-pass'] = false;
         }
       }
-      unset($_SESSION['form-validation-failed']);
+      unset($_SESSION['form-failed']);
     }
-    if($validates === false) {
-      $_SESSION['form-validation-failed'] = $values;
+    if($validates === false || $callbackStatus === false) {
+      $_SESSION['form-failed'] = $values;
     }
-    return $validates;
+    if($callbackStatus === false)
+      return false;
+    else
+      return $validates;
   }
 
   /**

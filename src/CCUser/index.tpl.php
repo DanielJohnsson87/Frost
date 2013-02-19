@@ -1,6 +1,5 @@
 <h1>User Profile</h1>
 <?= get_messages_from_session()?>
-<b><?= login_menu()?></b>
   <li><a href='<?=create_url(null, 'init')?>'>Init database, create tables and create default admin user & Doe user</a>
   <li><a href='<?=create_url(null, 'login')?>'>Login</a>
 </ul>

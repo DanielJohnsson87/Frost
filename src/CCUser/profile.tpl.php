@@ -1,4 +1,3 @@
-<?= login_menu()?>
 <?= get_messages_from_session()?>
 <h1>Profile</h1>
 <?php if($is_authenticated): ?>

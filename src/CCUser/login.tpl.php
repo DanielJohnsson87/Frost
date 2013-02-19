@@ -1,4 +1,3 @@
-<?= login_menu()?>
 <?= get_messages_from_session()?>
 
 <h1>Login</h1>
