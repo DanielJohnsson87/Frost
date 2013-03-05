@@ -1,0 +1,191 @@
+/** --------------------------------------------------------------
+* Reset. http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126
+*
+*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,
+figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,
+time,mark,audio,video{margin:0;padding:0;border:0;font-size:100.01%;font:inherit;vertical-align:baseline;}
+body{line-height:1;}
+ol,ul{list-style: none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+
+/** --------------------------------------------------------------
+* HTML5 elements.
+*
+*/
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
+audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
+audio:not([controls]){display:none;}
+[hidden]{display:none;}
+
+/** --------------------------------------------------------------
+* Import stylesheets
+*
+*/
+@import url('normalize.css');
+@import url('normalize.min.css');
+@import url('semantic.gs/stylesheets/less/grid.less');
+
+/** -----------------------------------------------
+* Background variables
+*/
+
+@gray-background: url("../img/bedge_grunge.png");
+@orange-background: url("../img/background.png");
+@bgtest: hsla(0,0%,90%,0.5);
+@toprow-background: #000;
+
+/** -----------------------------------------------
+* Font, Text & Link Variables
+*/
+
+@font-family-comic      = Comic Sans MS, cursive, sans-serif;
+@font-family-helvetica  = Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-monospace  = "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+
+@link-color:#600;
+
+
+/** -----------------------------------------------
+* Magic number
+*/
+@magic-number:22px;
+
+/** -----------------------------------------------
+* Wrap().  Wrap elements to site width in grid layout
+* Add clearfix and centrate it.
+*/
+.wrap() {width:@total-width;margin:0 auto;.clearfix();}
+
+
+
+
+html{
+	
+}
+
+body {
+   font-family:"Comic Sans MS", cursive, sans-serif;
+  margin:0;padding:0;color:@color; font:100.01%/1.375 @font-family-helvetica;
+}
+
+
+/** -----------------------------------------------
+* Headings, P, Links and so on.
+*/
+.headings-general() {font-weight:normal; color:#000; margin-bottom: @magic-number;
+   font-family:@font-family-comic;}
+
+h1{.headings-general;font-size:2.375em; line-height:1.1579em; border-bottom:1px solid #ccc; margin-bottom:@magic-number - 1px;}
+
+h2{.headings-general;font-size:1.875em; line-height:1.4667em;}
+
+h3{.headings-general;font-size:1.375em; line-height:1em;}
+
+h4{.headings-general;font-size:1.25em; line-height:1.1em;}
+
+h5{.headings-general; font-size:1em; font-weight:bold;}
+
+h6{.headings-general; font-size:1em; font-weight:bold; margin-bottom:0;}
+
+h1 img,h2 img,h3 img,h4 img,h5 img,h6 img{margin:0;}
+
+p {margin-bottom:1.375em;}
+
+a{color:@link-color; text-decoration:underline;
+&:focus,&:hover{color:lighten(@link-color, 10%); text-decoration:none;
+}
+}
+blockquote{margin-left:1em;margin-bottom:1.375em;}
+strong,dfn{font-weight:bold;}
+em,dfn{font-style:italic;}
+pre{margin-bottom:1.375em;white-space:pre;}
+pre,code,tt,.code{font:1em/1.375 @font-family-monospace;}
+
+/* Lists */
+li ul,li ol{margin:0;}
+ul,ol{margin:0.6875em 1.5em 1.375em 0;padding-left:1.5em;}
+ul{list-style-type:disc;}
+ol{list-style-type:decimal;}
+dl{margin:0 0 1.375em 0;}
+dl dt{font-weight:bold;}
+dd{margin-left:1.5em;}
+
+
+/* Tables. Because of the need for padding on TH and TD, the vertical rhythm
+  on table cells has to be 33px, instead of the standard 22px or 44px
+  of other elements. */
+table{margin-bottom:1.375em;width:100%;}
+caption{text-align:left;font-style:italic;}
+thead{border-bottom:2px solid #222;}
+th{vertical-align:bottom;font-weight:bold;text-align:left;}
+th,td{padding:5px 10px 5px 5px;}
+tbody tr:nth-child(even) td, tbody tr.even td {}
+tbody tr{border-bottom:1px solid #eee;
+  &:hover{color:#000;}
+}
+tfoot{font-style:italic;}
+/** -----------------------------------------------
+* Header
+*
+*/
+
+#outer-wrap-toprow{background:@toprow-background;}
+#inner-wrap-toprow{.wrap(); height:@magic-number;}
+
+.top-row:after {
+   content: ' ';
+   height: 0;
+   width: 0;
+   position: absolute;
+   top:@magic-number;
+   left:2em;
+   border: @magic-number solid transparent;
+   border-top-color: #000;
+}
+
+
+#outer-wrap-header{}
+#inner-wrap-header{.wrap();height:@magic-number*5;margin-bottom:@magic-number;}
+
+#header-logo,
+#header-menu,
+#header-login{height:100%;}
+
+#header-logo {.column(3);}
+#header-menu {.column(8);}
+#header-login {.column(1);}
+
+/** -----------------------------------------------
+* Headline
+*/
+
+#outer-wrap-headline{}
+#inner-wrap-headline{.wrap(); height:@magic-number * 3; margin-bottom:@magic-number;}
+
+#headline {.column(12); height:100%;}
+
+/** -----------------------------------------------
+* Content
+*/
+
+#outer-wrap-content{}
+#inner-wrap-content{.wrap(); margin-bottom:@magic-number;}
+
+#content {.column(12); }
+
+/** -----------------------------------------------
+* Footer
+*/
+
+#outer-wrap-footer{}
+#inner-wrap-footer{.wrap(); height:@magic-number * 4; margin-bottom:@magic-number;}
+
+#footer-first,
+#footer-second,
+#footer-third {.column(4);  height:100%;}

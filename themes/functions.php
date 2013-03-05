@@ -100,9 +100,11 @@ function current_url() {
 
 /**
 * Render all views.
+*
+* @param $region string the region to draw the content in.
 */
-function render_views() {
-  return CLydia::Instance()->views->Render();
+function render_views($region='default') {
+  return CLydia::Instance()->views->Render($region);
 }
 
 /**
@@ -145,4 +147,13 @@ function get_gravatar($size=null) {
 */
 function filter_data($data, $filter) {
   return CMContent::Filter($data, $filter);
+}
+
+/**
+* Check if region has views. Accepts variable amount of arguments as regions.
+*
+* @param $region string the region to draw the content in.
+*/
+function region_has_content($region='default') {
+  return CLydia::Instance()->views->RegionHasView(func_get_args());
 }

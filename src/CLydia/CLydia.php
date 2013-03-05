@@ -133,13 +133,17 @@ public function ThemeEngineRender() {
 //Save to session before output anything
       $this->session->StoreInSession();
 
+  // Is theme enabled?
+  if(!isset($this->config['theme'])) { return; }
+
 //Get the path and settings for the theme
 	$themeName		= $this->config['theme']['name'];
+  $themeStyle   = $this->config['theme']['stylesheet'];
 	$themePath		= LYDIA_INSTALL_PATH . "/themes/{$themeName}";
 	$themeUrl		= $this->request->base_url . "themes/{$themeName}";
 
 	//Add stylesheet path to the $ly->data array
-	$this->data['stylesheet'] = "{$themeUrl}/style.css";
+	$this->data['stylesheet'] = "{$themeUrl}/style/{$themeStyle}";
 
 	//Include the global functions.php and the functions.php that are part of the theme
 	$ly = &$this;
@@ -151,7 +155,11 @@ public function ThemeEngineRender() {
 	//Extract $ly->data and $ly->view to own variables and hand over to the template file
 	extract($this->data);
   extract($this->views->GetData());
-	include("{$themePath}/default.tpl.php");
+  if(isset($this->config['theme']['data'])) {
+      extract($this->config['theme']['data']);
+  $templateFile = (isset($this->config['theme']['template_file'])) ? $this->config['theme']['template_file'] : 'default.tpl.php';
+  include("{$themePath}/{$templateFile}");
 }
 
+}
 }

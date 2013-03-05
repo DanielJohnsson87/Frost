@@ -71,6 +71,8 @@ $ly->config['controllers'] = array(
 							'class' => 'CCPage'),
 	'blog'			=> array('enabled' => true,
 							'class' => 'CCBlog'),
+	'theme'			=> array('enabled' => true,
+							'class' => 'CCTheme'),
 
 	);
 
@@ -79,7 +81,17 @@ $ly->config['controllers'] = array(
 */
 $ly->config['theme'] = array(
 	//The name of the theme in the theme directory
-	'name'		=> 'core',
+	'name'		 => 'grid',		// The name of the theme in the theme directory
+	'stylesheet' => 'style.php', //Main stylesheet to include in template files
+	'template_file'   => 'index.tpl.php',   // Default template file, else use default.tpl.php
+	  //A list of valid theme regions
+	'regions' 	=> array('header-logo', 'header-menu', 'header-login', 'headline',
+	 'content', 'footer-first', 'footer-second', 'footer-third'),
+	//Add static entries for use in the template file.
+	'data'		=> array(
+			'logo' => '/img/logo-small.png',
+			'copyright' => '<p>Frost &copy; by Daniel Johnsson (danne_j87@hotmail.com)</p>'
+			)
 	);
 
 /**
