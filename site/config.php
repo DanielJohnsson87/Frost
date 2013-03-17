@@ -107,11 +107,11 @@ $ly->config['controllers'] = array(
 
 $ly->config['theme'] = array(
 	//The name of the theme in the theme directory
-	'path'	=> 'themes/grid',
-	//'path'		 => 'site/themes/mytheme',
+	//'path'	=> 'themes/grid',
+	'path'		 => 'site/themes/mytheme',
 	'parent'	 => 'themes/grid',
 	'name'		 => 'grid',		// The name of the theme in the theme directory
-	'stylesheet' => 'style/style.php', //Main stylesheet to include in template files
+	'stylesheet' => 'style/style.css', //Main stylesheet to include in template files
 	'template_file'   => 'index.tpl.php',   // Default template file, else use default.tpl.php
 	  //A list of valid theme regions
 	'regions' 	=> array('header-logo', 'header-menu', 'header-login', 'headline',
