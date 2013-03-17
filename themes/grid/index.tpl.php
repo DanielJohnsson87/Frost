@@ -24,6 +24,7 @@
 
   </header>
 </header>
+<div class="index-wrapper">
 
 <?php if(region_has_content('headline')): ?>
 <div id='outer-wrap-headline'>
@@ -52,6 +53,7 @@
 
   </div>
   <?php endif; ?>
+</div>
 </div>
 </body>
 </html>

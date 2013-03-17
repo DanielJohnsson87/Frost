@@ -153,7 +153,7 @@ body {
   padding: 0;
   color: ;
   font: 100.01%/1.375 Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: url("../img/bedge_grunge.png");
+  background: rgba(238,213,183,0.4);
 }
 h1 {
   font-weight: normal;
@@ -229,6 +229,11 @@ a:hover {
 blockquote {
   margin-left: 1em;
   margin-bottom: 1.375em;
+  padding: 0.687em 0 0.687em 0.687em;
+  background: #66CCFF;
+  border-radius: 10px;
+  max-width: 500px;
+  border: 1px solid #000;
 }
 strong,
 dfn {
@@ -331,6 +336,22 @@ textarea {
 .content-edit textarea {
   width: 40em;
   height: 15em;
+}
+.index-wrapper {
+  width: 960px;
+  margin: 0 auto;
+  *zoom: 1;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+.index-wrapper:before,
+.index-wrapper:after {
+  content: "";
+  display: table;
+}
+.index-wrapper:after {
+  clear: both;
 }
 #outer-wrap-toprow {
   background: #000;

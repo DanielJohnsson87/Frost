@@ -1,4 +1,4 @@
-a:4:{s:4:"root";s:10:"style.less";s:8:"compiled";s:8427:"@import url('normalize.css');
+a:4:{s:4:"root";s:10:"style.less";s:8:"compiled";s:8803:"@import url('normalize.css');
 @import url('normalize.min.css');
 html,
 body,
@@ -153,7 +153,7 @@ body {
   padding: 0;
   color: ;
   font: 100.01%/1.375 Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: url("../img/bedge_grunge.png");
+  background: rgba(238,213,183,0.4);
 }
 h1 {
   font-weight: normal;
@@ -229,6 +229,11 @@ a:hover {
 blockquote {
   margin-left: 1em;
   margin-bottom: 1.375em;
+  padding: 0.687em 0 0.687em 0.687em;
+  background: #66CCFF;
+  border-radius: 10px;
+  max-width: 500px;
+  border: 1px solid #000;
 }
 strong,
 dfn {
@@ -331,6 +336,22 @@ textarea {
 .content-edit textarea {
   width: 40em;
   height: 15em;
+}
+.index-wrapper {
+  width: 960px;
+  margin: 0 auto;
+  *zoom: 1;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+.index-wrapper:before,
+.index-wrapper:after {
+  content: "";
+  display: table;
+}
+.index-wrapper:after {
+  clear: both;
 }
 #outer-wrap-toprow {
   background: #000;
@@ -597,4 +618,4 @@ div.blog-post {
   color: red;
   font-size: smaller;
 }
-";s:5:"files";a:2:{s:77:"/home/saxon/students/20122/dajj12/www/phpmvc/me7/themes/grid/style/style.less";i:1363447710;s:105:"/home/saxon/students/20122/dajj12/www/phpmvc/me7/themes/grid/style/semantic.gs/stylesheets/less/grid.less";i:1363023309;}s:7:"updated";i:1363447714;}
+";s:5:"files";a:2:{s:77:"/home/saxon/students/20122/dajj12/www/phpmvc/me7/themes/grid/style/style.less";i:1363510586;s:105:"/home/saxon/students/20122/dajj12/www/phpmvc/me7/themes/grid/style/semantic.gs/stylesheets/less/grid.less";i:1363023309;}s:7:"updated";i:1363510589;}

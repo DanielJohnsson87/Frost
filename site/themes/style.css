@@ -1,1 +1,4 @@
 @import url('../../../../themes/grid/style/style.css');
+
+
+blockquote{padding:0.5em; background:#66CCFF; border-radius:5px}
