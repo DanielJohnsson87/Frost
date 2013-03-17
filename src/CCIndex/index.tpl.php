@@ -18,5 +18,5 @@ to be able to write and create files.</p>
 <p>Second, Frost has some modules that need to be initialised. You can do this through a
 controller. Point your browser to the following link.</p>
 <blockquote>
-<a href='<?=create_url('modules/install')?>'>modules/install</a>
+<a href='<?=create_url('module/install')?>'>modules/install</a>
 </blockquote>
