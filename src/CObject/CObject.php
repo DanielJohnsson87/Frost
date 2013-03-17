@@ -25,6 +25,7 @@ class CObject {
 		}
 		//Make $this->config the same as $ly->config and so on. 
 		//Now we can reference CLydia with $this instead of $ly
+		$this->ly 		=&$ly;
 		$this->config 	=&$ly->config;
 		$this->request 	=&$ly->request;
 		$this->data 	=&$ly->data;
@@ -35,45 +36,41 @@ class CObject {
 	}
 
 	/**
-* Redirect to another url and store the session
+* Wrapper for same method in CLydia. See there for documentation.
 */
-protected function RedirectTo($urlOrController=null, $method=null) {
-    $ly = CLydia::Instance();
-    if(isset($ly->config['debug']['db-num-queries']) && $ly->config['debug']['db-num-queries'] && isset($ly->db)) {
-      $this->session->SetFlash('database_numQueries', $this->db->GetNumQueries());
-    }
-    if(isset($ly->config['debug']['db-queries']) && $ly->config['debug']['db-queries'] && isset($ly->db)) {
-      $this->session->SetFlash('database_queries', $this->db->GetQueries());
-    }
-    if(isset($ly->config['debug']['timer']) && $ly->config['debug']['timer']) {
-$this->session->SetFlash('timer', $ly->timer);
-    }
-    $this->session->StoreInSession();
-    header('Location: ' . $this->request->CreateUrl($urlOrController, $method));
+protected function RedirectTo($urlOrController=null, $method=null, $arguments=null) {
+    $this->ly->RedirectTo($urlOrController, $method, $arguments);
   }
 
 
 /**
-* Redirect to a method within the current controller. Defaults to index-method. Uses RedirectTo().
-*
-* @param string method name the method, default is index method.
+* Wrapper for same method in CLydia. See there for documentation.
 */
-protected function RedirectToController($method=null) {
-    $this->RedirectTo($this->request->controller, $method);
+protected function RedirectToController($method=null, $arguments=null) {
+    $this->ly->RedirectToController($method, $arguments);
   }
 
 
 /**
-* Redirect to a controller and method. Uses RedirectTo().
-*
-* @param string controller name the controller or null for current controller.
-* @param string method name the method, default is current method.
+* Wrapper for same method in CLydia. See there for documentation.
 */
-protected function RedirectToControllerMethod($controller=null, $method=null) {
-$controller = is_null($controller) ? $this->request->controller : null;
-$method = is_null($method) ? $this->request->method : null;	
-    $this->RedirectTo($this->request->CreateUrl($controller, $method));
+protected function RedirectToControllerMethod($controller=null, $method=null, $arguments=null) {
+    $this->ly->RedirectToControllerMethod($controller, $method, $arguments);
   }
 
 
+/**
+* Wrapper for same method in CLydia. See there for documentation.
+*/
+  protected function AddMessage($type, $message, $alternative=null) {
+    return $this->ly->AddMessage($type, $message, $alternative);
+  }
+
+
+/**
+* Wrapper for same method in CLydia. See there for documentation.
+*/
+protected function CreateUrl($urlOrController=null, $method=null, $arguments=null) {
+    return $this->ly->CreateUrl($urlOrController, $method, $arguments);
+  }
 }

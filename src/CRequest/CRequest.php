@@ -70,20 +70,27 @@ return $url;
 	/**
 	* Init the object by parsing the current url request.
 	* Calculates the base_url of the installation. Stores all useful details in $this.
+	* 
 	* @param $baseUrl stinr use this as a hardcoded baseurl.
+	* @param $routing array key/val to use for routing if url matches key.
 	*/
-	public function Init($baseUrl = null) {
+	public function Init($baseUrl = null, $routing=null) {
 
 		$requestUri 	= $_SERVER['REQUEST_URI'];
 		$scriptName 	= $_SERVER['SCRIPT_NAME']; 
 
-		//Compare REQUEST_URI and SCRIPT_NAME as long as they match, leave the rest as current request.
-		$i=0;
-		$len = min(strlen($requestUri), strlen($scriptName));
-		while($i<$len && $requestUri[$i] == $scriptName[$i]) {
-			$i++;
-		}
-		$request = trim(substr($requestUri, $i), '/');
+    // Compare REQUEST_URI and SCRIPT_NAME as long they match, leave the rest as current request.
+    $i=0;
+    $len = min(strlen($requestUri), strlen($scriptName));
+    while($i<$len && $requestUri[$i] == $scriptName[$i]) {
+      $i++;
+    }
+    $request = trim(substr($requestUri, $i), '/');
+    // Fix the error that the previous function cant handle $requestUri that contains index.
+    if($request =='') {
+    	$request = 'index';
+    }
+    //Fixes the error that the previous function cant handle 
 
 		//Remove the ?-part from the query when analysing controller/method/arg1/arg2
 		$queryPos = strpos($request, '?');
@@ -95,6 +102,15 @@ return $url;
 		if(empty($request) && isset($_GET['q'])) {
 			$request = trim($_GET['q']);
 		}
+		//Check if url matches an entry in routing table
+   		$routed_from = null;
+   		if(is_array($routing) && isset($routing[$request]) && $routing[$request]['enabled']) {
+     	$routed_from = $request;
+
+     	$request = $routing[$request]['url'];
+		}
+
+		//Split the request into its parts
 		$splits = explode('/', $request);
 
 
@@ -114,6 +130,7 @@ return $url;
 		$this->current_url		= $currentUrl;
 		$this->request_uri 		= $_SERVER['REQUEST_URI'];
 		$this->script_name 		= $_SERVER['SCRIPT_NAME'];
+		$this->routed_from		= $routed_from;
 		$this->request 			= $request;
 		$this->splits			= $splits;
 		$this->controller       = $controller;

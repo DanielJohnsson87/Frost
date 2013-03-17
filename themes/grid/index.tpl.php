@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title><?=$title?></title>
-  <link rel="stylesheet" type='text/css' href="<?=$stylesheet?>">
-    <?php if(isset($inline_style)): ?><style><?=$inline_style?></style><?php endif; ?>
+ <link rel='stylesheet' href='<?=theme_url($stylesheet)?>'/>
+     <?php if(isset($inline_style)): ?><style><?=$inline_style?></style><?php endif; ?>
 </head>
 <body>
 <div id='outer-wrap-toprow'>
@@ -14,9 +14,9 @@
 </div>
 
 
-<header id='outer-wrap-header'>
+<header id='outer-wrap-header' class="link-color">
   <header id='inner-wrap-header'>
-    <div id='header-logo'><img src="<?=theme_url($logo)?>"> </div>
+    <div id='header-logo'><img src="<?=theme_parent_url($logo)?>"> </div>
 
 	 <div id='header-menu'><?=render_views('header-menu')?></div>
 
@@ -37,6 +37,7 @@
 <div id='outer-wrap-content'>
   <div id='inner-wrap-content'>
     <div id='content'><?=get_messages_from_session()?><?=render_views('content')?><?=@$main?><?=render_views()?></div>
+    <div id='sidebar'><?=render_views('sidebar')?></div>
   </div>
 </div>
 

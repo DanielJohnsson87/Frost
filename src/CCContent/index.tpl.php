@@ -1,4 +1,3 @@
-<?= get_messages_from_session()?>
 
 <h1>Content Controller Index</h1>
 <p>One controller to manage the actions for content, mainly list, create, edit, delete, view.</p>

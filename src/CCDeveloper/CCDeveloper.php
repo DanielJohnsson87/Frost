@@ -19,9 +19,6 @@ public function __construct() {
    */
   public function Index() {  
     $this->Menu();
-
-  // Include index.tpl.php and pass an array with content
-$this->views->AddInclude(__DIR__ . '/index.tpl.php', array('content'=> $this->data['main']));
   
   }
 /*
@@ -58,8 +55,6 @@ this same page.</p>
 </ul>
 <p>Enables various and flexible url-strategy.</p>
 EOD;
-  // Include index.tpl.php and pass an array with content
-$this->views->AddInclude(__DIR__ . '/index.tpl.php', array('content'=> $this->data['main']));
   }
 
 
@@ -94,8 +89,7 @@ public function DisplayObject() {
 EOD;
 
 $this->data['main'] .= '<pre>' . htmlentities(print_r($this, true)) . '</pre>';
-  // Include index.tpl.php and pass an array with content
-$this->views->AddInclude(__DIR__ . '/index.tpl.php', array('content'=> $this->data['main']));
+
 }
   
 }  

@@ -1,4 +1,3 @@
-    <?= get_messages_from_session()?>
     <?php if($content['created']): ?>
       <h1>Edit Content</h1>
       <p>You can edit and save this content.</p>

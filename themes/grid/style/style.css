@@ -1,0 +1,555 @@
+@import url('normalize.css');
+@import url('normalize.min.css');
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100.01%;
+  font: inherit;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+[hidden] {
+  display: none;
+}
+body {
+  width: 100%;
+  *zoom: 1;
+}
+body:before,
+body:after {
+  content: "";
+  display: table;
+}
+body:after {
+  clear: both;
+}
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: ;
+  font: 100.01%/1.375 Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h1 {
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 22px;
+  font-family: Comic Sans MS, cursive, sans-serif;
+  font-size: 2.375em;
+  line-height: 1.1579em;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 21px;
+}
+h2 {
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 22px;
+  font-family: Comic Sans MS, cursive, sans-serif;
+  font-size: 1.875em;
+  line-height: 1.4667em;
+}
+h3 {
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 22px;
+  font-family: Comic Sans MS, cursive, sans-serif;
+  font-size: 1.375em;
+  line-height: 1em;
+}
+h4 {
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 22px;
+  font-family: Comic Sans MS, cursive, sans-serif;
+  font-size: 1.25em;
+  line-height: 1.1em;
+}
+h5 {
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 22px;
+  font-family: Comic Sans MS, cursive, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+}
+h6 {
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 22px;
+  font-family: Comic Sans MS, cursive, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+h1 img,
+h2 img,
+h3 img,
+h4 img,
+h5 img,
+h6 img {
+  margin: 0;
+}
+p {
+  margin-bottom: 1.375em;
+}
+a {
+  color: #600;
+  text-decoration: underline;
+}
+a:focus,
+a:hover {
+  color: #990000;
+  text-decoration: none;
+}
+blockquote {
+  margin-left: 1em;
+  margin-bottom: 1.375em;
+}
+strong,
+dfn {
+  font-weight: bold;
+}
+em,
+dfn {
+  font-style: italic;
+}
+pre {
+  margin-bottom: 1.375em;
+  white-space: pre;
+}
+pre,
+code,
+tt,
+.code {
+  font: 1em/1.375 "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+}
+li ul,
+li ol {
+  margin: 0;
+}
+ul,
+ol {
+  margin: 0.6875em 1.5em 1.375em 0;
+  padding-left: 1.5em;
+}
+ul {
+  list-style-type: disc;
+}
+ol {
+  list-style-type: decimal;
+}
+dl {
+  margin: 0 0 1.375em 0;
+}
+dl dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 1.5em;
+}
+table {
+  margin-bottom: 1.375em;
+  width: 100%;
+}
+caption {
+  text-align: left;
+  font-style: italic;
+}
+thead {
+  border-bottom: 2px solid #222;
+}
+th {
+  vertical-align: bottom;
+  font-weight: bold;
+  text-align: left;
+}
+th,
+td {
+  padding: 5px 10px 5px 5px;
+}
+tbody tr {
+  border-bottom: 1px solid #eee;
+}
+tbody tr:hover {
+  color: #000;
+}
+tfoot {
+  font-style: italic;
+}
+#outer-wrap-toprow {
+  background: #000;
+}
+#inner-wrap-toprow {
+  width: 960px;
+  margin: 0 auto;
+  *zoom: 1;
+  height: 22px;
+}
+#inner-wrap-toprow:before,
+#inner-wrap-toprow:after {
+  content: "";
+  display: table;
+}
+#inner-wrap-toprow:after {
+  clear: both;
+}
+.top-row:after {
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 22px;
+  left: 2em;
+  border: 22px solid transparent;
+  border-top-color: #000;
+}
+#inner-wrap-header {
+  width: 960px;
+  margin: 0 auto;
+  *zoom: 1;
+  height: 110px;
+  margin-bottom: 22px;
+}
+#inner-wrap-header:before,
+#inner-wrap-header:after {
+  content: "";
+  display: table;
+}
+#inner-wrap-header:after {
+  clear: both;
+}
+#header-logo,
+#header-menu,
+#header-login {
+  height: 100%;
+}
+#header-logo {
+  display: inline;
+  float: left;
+  width: 220px;
+  margin: 0 10px;
+}
+#header-menu {
+  display: inline;
+  float: left;
+  width: 620px;
+  margin: 0 10px;
+}
+#header-login {
+  display: inline;
+  float: left;
+  width: 60px;
+  margin: 0 10px;
+}
+.header-container nav {
+  float: right;
+  margin: 1em 10% 0 0;
+}
+.header-container ul {
+  padding: 0;
+}
+.header-container ul li {
+  display: inline;
+  margin: 0.5em;
+}
+.header-container nav a {
+  padding: 0.5em;
+  border-radius: 5px;
+}
+.header-container nav a:hover {
+  background: #000;
+  position: relative;
+  opacity: 0.7;
+  color: #fff;
+}
+.header-container nav a:hover:after {
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  bottom: -20px;
+  left: 1em;
+  border: 10px solid transparent;
+  border-top-color: #000;
+}
+body#Index a#Index-,
+body#Report a#Report-,
+body#Source a#Source-,
+body#Presentation a#Presentation- {
+  background: #000;
+  border-radius: 5px;
+  position: relative;
+  color: #fff;
+}
+body#Index a#Index-:after,
+body#Report a#Report-:after,
+body#Source a#Source-:after,
+body#Presentation a#Presentation-:after {
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  bottom: -20px;
+  left: 1em;
+  border: 10px solid transparent;
+  border-top-color: #000;
+}
+#inner-wrap-headline {
+  width: 960px;
+  margin: 0 auto;
+  *zoom: 1;
+  height: 66px;
+  margin-bottom: 22px;
+}
+#inner-wrap-headline:before,
+#inner-wrap-headline:after {
+  content: "";
+  display: table;
+}
+#inner-wrap-headline:after {
+  clear: both;
+}
+#headline {
+  display: inline;
+  float: left;
+  width: 940px;
+  margin: 0 10px;
+  height: 100%;
+}
+#inner-wrap-content {
+  width: 960px;
+  margin: 0 auto;
+  *zoom: 1;
+  margin-bottom: 22px;
+}
+#inner-wrap-content:before,
+#inner-wrap-content:after {
+  content: "";
+  display: table;
+}
+#inner-wrap-content:after {
+  clear: both;
+}
+#content {
+  display: inline;
+  float: left;
+  width: 940px;
+  margin: 0 10px;
+}
+div.blog-post {
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+  margin: 1em;
+  padding: 0 0.5em 0 0.5em;
+}
+#inner-wrap-footer {
+  width: 960px;
+  margin: 0 auto;
+  *zoom: 1;
+  height: 88px;
+  margin-bottom: 22px;
+}
+#inner-wrap-footer:before,
+#inner-wrap-footer:after {
+  content: "";
+  display: table;
+}
+#inner-wrap-footer:after {
+  clear: both;
+}
+#footer-first,
+#footer-second,
+#footer-third {
+  display: inline;
+  float: left;
+  width: 300px;
+  margin: 0 10px;
+  height: 100%;
+}
+.clear {
+  clear: both;
+}
+.center-text {
+  text-align: center;
+}
+.black-text {
+  color: #000;
+}
+.big-h1 {
+  font-size: 5em;
+}
+.big-p {
+  font-size: 1.7em;
+}
+.article-header {
+  background: #000;
+  margin: 7px 10px 10px 0;
+  color: #fff;
+  padding: 0.1em 0 0.1em 0.6em;
+  box-shadow: 5px 5px 5px #333;
+  position: relative;
+  border-radius: 5px;
+}
+.article-header:after {
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  bottom: -30px;
+  left: 1em;
+  border: 15px solid transparent;
+  border-top-color: #000;
+}
+.success,
+.notice,
+.warning,
+.error,
+.alert,
+.info {
+  border: 1px solid #777;
+  padding: 1em;
+  width: 25em;
+  border-radius: 5px;
+}
+.success {
+  background: #BCED91;
+}
+.notice {
+  background: #0EBFE9;
+}
+.alert,
+.warning,
+.error {
+  background: #E3170D;
+}
+.validation-failed {
+  border: 2px solid red;
+}
+.validation-message {
+  color: red;
+  font-size: smaller;
+}

@@ -73,20 +73,50 @@ $ly->config['controllers'] = array(
 							'class' => 'CCBlog'),
 	'theme'			=> array('enabled' => true,
 							'class' => 'CCTheme'),
+	'module'		=> array('enabled' => true,
+							'class' => 'CCModules'),
+	'my' 			=> array('enabled' => true,
+							'class' => 'CCMycontroller'),
 
 	);
 
 /**
-* Settings for the theme.
+* Settings for the theme. The theme may have a parent theme.
+*
+* When a parent theme is used the parent's functions.php will be included before the current
+* theme's functions.php. The parent stylesheet can be included in the current stylesheet
+* by an @import clause. See site/themes/mytheme for an example of a child/parent theme.
+* Template files can reside in the parent or current theme, the CLydia::ThemeEngineRender()
+* looks for the template-file in the current theme first, then it looks in the parent theme.
+*
+* There are two useful theme helpers defined in themes/functions.php.
+*  theme_url($url): Prepends the current theme url to $url to make an absolute url.
+*  theme_parent_url($url): Prepends the parent theme url to $url to make an absolute url.
+*
+* path: Path to current theme, relativly LYDIA_INSTALL_PATH, for example themes/grid or site/themes/mytheme.
+* parent: Path to parent theme, same structure as 'path'. Can be left out or set to null.
+* stylesheet: The stylesheet to include, always part of the current theme, use @import to include the parent stylesheet.
+* template_file: Set the default template file, defaults to default.tpl.php.
+* regions: Array with all regions that the theme supports.
+* data: Array with data that is made available to the template file as variables.
+*
+* The name of the stylesheet is also appended to the data-array, as 'stylesheet' and made
+* available to the template files.
 */
+
+
 $ly->config['theme'] = array(
 	//The name of the theme in the theme directory
+	'path'	=> 'themes/grid',
+	//'path'		 => 'site/themes/mytheme',
+	'parent'	 => 'themes/grid',
 	'name'		 => 'grid',		// The name of the theme in the theme directory
-	'stylesheet' => 'style.php', //Main stylesheet to include in template files
+	'stylesheet' => 'style/style.php', //Main stylesheet to include in template files
 	'template_file'   => 'index.tpl.php',   // Default template file, else use default.tpl.php
 	  //A list of valid theme regions
 	'regions' 	=> array('header-logo', 'header-menu', 'header-login', 'headline',
-	 'content', 'footer-first', 'footer-second', 'footer-third'),
+	 'content', 'footer-first', 'footer-second', 'footer-third', 'sidebar'),
+	'menu_to_region' => array('navbar' => 'header-menu'),
 	//Add static entries for use in the template file.
 	'data'		=> array(
 			'logo' => '/img/logo-small.png',
@@ -125,4 +155,33 @@ $ly->config['url_type'] = 1;
 * Configurate your settings
 */
 $ly->config['database'][0]['dsn'] = 'sqlite:' . LYDIA_SITE_PATH . '/data/.ht.sqlite';
+
+/**
+ * Define a routing table for urls
+ *
+ * Route custom urls to a defined controller/method/arguments
+ */
+$ly->config['routing'] = array(
+	'home' => array('enabled' => true, 'url' => 'index/index'),
+	);
+
+/**
+ * Define the menu that you want to use
+ */
+$ly->config['menus'] = array(
+	'navbar' => array(
+	'index' => array('text' => 'Home', 'url' => 'index', 'id' => 'index-'),
+	'guestbook' => array('text' => 'Guestbook', 'url' => 'guestbook', 'id' => 'guestbook-'),
+	'developer' => array('text' => 'Developer', 'url' => 'developer', 'id' => 'developer-'),
+	'user' => array('text' => 'User', 'url' => 'user', 'id' => 'user-'),
+	'content' => array('text' => 'Content', 'url' => 'content', 'id' => 'content-'),
+	'theme' => array('text' => 'Theme', 'url' => 'theme', 'id' => 'theme-'),
+	'module' => array('text' => 'Modules', 'url' => 'module', 'id' => 'module-'),
+	),
+	'small' => array(
+	'index' => array('text' => 'Home', 'url' => 'my/index', 'id' => 'index-'),
+	'guestbook' => array('text' => 'Guestbook', 'url' => 'my/guestbook', 'id' => 'guestbook-'),
+	'blog' => array('text' => 'Blog', 'url' => 'my/blog', 'id' => 'blog-'),
+
+	));
 

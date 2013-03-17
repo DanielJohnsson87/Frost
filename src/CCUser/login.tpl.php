@@ -1,4 +1,3 @@
-<?= get_messages_from_session()?>
 
 <h1>Login</h1>
 <p>Login using your acronym or email.</p>

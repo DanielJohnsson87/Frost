@@ -68,7 +68,7 @@ class CFormElement implements ArrayAccess{
     }
     
     if($type && $this['type'] == 'submit') {
-        return "<p><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></p>\n";
+      return "<span><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></span>\n";
     } else if($type && $this['type'] == 'textarea') {
         return "<p><label for='$id'>$label</label><br><textarea id='$id'{$type}{$class}{$name}{$autofocus}{$readonly}>{$onlyValue}</textarea></p>\n";
     } else if($type && $this['type'] == 'hidden') {

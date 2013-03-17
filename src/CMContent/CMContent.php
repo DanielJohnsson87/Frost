@@ -2,9 +2,9 @@
 /**
 * A model for content stored in database.
 *
-* @package LydiaCore
+* @package FrostCore
 */
-class CMContent extends CObject implements IHasSQL, ArrayAccess {
+class CMContent extends CObject implements IHasSQL, ArrayAccess, IModule {
 
 /**
 * Properties
@@ -44,11 +44,12 @@ public function __construct($id=null) {
    'drop table content' => "DROP TABLE IF EXISTS Content;",
       'create table content' => "CREATE TABLE IF NOT EXISTS Content (id INTEGER PRIMARY KEY, key TEXT KEY, type TEXT, title TEXT, data TEXT, filter TEXT, idUser INT, created DATETIME default (datetime('now')), updated DATETIME default NULL, deleted DATETIME default NULL, FOREIGN KEY(idUser) REFERENCES User(id));",
       'insert content' => 'INSERT INTO Content (key,type,title,data,filter,idUser) VALUES (?,?,?,?,?,?);',
-      'select * by id' => 'SELECT c.*, u.acronym as owner FROM Content AS c INNER JOIN User as u ON c.idUser=u.id WHERE c.id=?;',
-      'select * by key' => 'SELECT c.*, u.acronym as owner FROM Content AS c INNER JOIN User as u ON c.idUser=u.id WHERE c.key=?;',
-      'select * by type' => "SELECT c.*, u.acronym as owner FROM Content AS c INNER JOIN User as u ON c.idUser=u.id WHERE type=? ORDER BY {$order_by} {$order_order};",
-      'select *' => 'SELECT c.*, u.acronym as owner FROM Content AS c INNER JOIN User as u ON c.idUser=u.id;',
+      'select * by id' => 'SELECT c.*, u.acronym as owner FROM Content AS c INNER JOIN User as u ON c.idUser=u.id WHERE c.id=? AND deleted IS NULL;',
+      'select * by key' => 'SELECT c.*, u.acronym as owner FROM Content AS c INNER JOIN User as u ON c.idUser=u.id WHERE c.key=? AND deleted IS NULL;',
+      'select * by type' => "SELECT c.*, u.acronym as owner FROM Content AS c INNER JOIN User as u ON c.idUser=u.id WHERE type=? AND deleted IS NULL ORDER BY {$order_by} {$order_order};",
+      'select *' => 'SELECT c.*, u.acronym as owner FROM Content AS c INNER JOIN User as u ON c.idUser=u.id WHERE deleted IS NULL;',
       'update content' => "UPDATE Content SET key=?, type=?, title=?, data=?, filter=?, updated=datetime('now') WHERE id=?;",
+      'update content as deleted' => "UPDATE Content SET deleted=datetime('now') WHERE id=?;",
      );
     if(!isset($queries[$key])) {
       throw new Exception("No such SQL query, key '$key' was not found.");
@@ -58,9 +59,11 @@ public function __construct($id=null) {
 
 
 /**
-* Init the database and create appropriate tables.
+* Implementing interface IModule. Manage install/update/deinstall and equal actions.
 */
-  public function Init() {
+  public function Manage($action=null) {
+    switch($action) {
+      case 'install':
     try {
       $this->db->ExecuteQuery(self::SQL('drop table content'));
       $this->db->ExecuteQuery(self::SQL('create table content'));
@@ -85,10 +88,18 @@ public function __construct($id=null) {
 
         'phpmarkdown', $this->user['id']));
 
-      $this->session->AddMessage('success', 'Successfully created the database tables and created a default "Hello World" blog post, owned by you.');
+          return array('success', 'Successfully created the database tables and created a default "Hello World" blog post, owned by you.');
+
     } catch(Exception$e) {
       die("$e<br/>Failed to open database: " . $this->config['database'][0]['dsn']);
     }
+    break;
+
+    default:
+    throw new Exception('Unsupported action for this module.');
+    break;
+  }
+
   }
 
   /**
@@ -114,6 +125,24 @@ public function __construct($id=null) {
   		$this->session->AddMessage('error', "Failed to {$msg} content '{$this['key']}'.");
   	}
   	return $rowcount === 1;
+  }
+
+  /**
+   * Delete content. Set its deletion-date to enable wastebasket functionality
+   *
+   * @return boolean true if success else false.
+   */
+  public function Delete() {
+    if($this['id']) {
+      $this->db->ExecuteQuery(self::SQL('update content as deleted'), array($this['id']));
+    }
+    $rowcount = $this->db->RowCount();
+    if($rowcount) {
+      $this->session->AddMessage('success', "Successfully set content '" . htmlEnt($this['key']) . "' as deleted.");
+    } else {
+      $this->session->AddMessage('error', "Failed to set content '" . htmlEnt($this['key']) . "' as deleted.");
+    }
+    return $rowcount === 1;
   }
 
   /**

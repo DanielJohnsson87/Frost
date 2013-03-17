@@ -50,10 +50,10 @@ public function Handler() {
 	}
 	//If post['doCreate'] is set, create a new table 
 	elseif(isset($_POST['doCreate'])) {
-		$this->guestbookModel->Init();
+		$action = 'install';
+		$this->guestbookModel->Manage($action);
 	}
 	//Redirect to index() method 
- 	header('Location: ' . $this->request->CreateUrl('guestbook'));
-}
+    $this->RedirectTo($this->request->CreateUrl($this->request->controller));}
 
 }       

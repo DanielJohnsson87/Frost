@@ -1,5 +1,4 @@
 <h1>Frost Guestbook Example</h1>
-    <?=get_messages_from_session()?>
 <p>Showing off how to implement a guestbook in Lydia. Now saving to database.</p>
 
 <form action="<?=$formAction?>" method='post'>
