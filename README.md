@@ -16,7 +16,14 @@ You can download Frost from github.
 
 You can review its source directly on github: https://github.com/Trobiz/Frost
 
-### 2. Installation
+### 2. .htaccess
+
+Then you need to edit the .htaccess file located in your root-folder. Look up the line Redirect all requests to index.php.
+
+    > You need to change: RewriteBase /~dajj12/phpmvc/me7 to your root-foler for the MVC. 
+    > pico .htaccess 
+
+### 3. Installation
 
 Go to www.your-install-path.com/index/index or follow the instructions bellow.  
 
@@ -24,12 +31,6 @@ First you have to make the data-directory writable. This is the place where Fros
 
     > cd Frost; chmod 777 site/data 
 
-### 3. .htaccess
-
-Then you need to edit the .htaccess file located in your root-folder. Look up the line Redirect all requests to index.php.
-
-    > You need to change: RewriteBase /~dajj12/phpmvc/me7 to your root-foler for the MVC. 
-    > pico .htaccess 
 
 ### 4. Module/Install
 
