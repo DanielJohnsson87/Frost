@@ -18,21 +18,24 @@ You can review its source directly on github: https://github.com/Trobiz/Frost
 
 ### 2. Installation
 
+Go to www.your-install-path.com/index/index or follow the instructions bellow.  
+
 First you have to make the data-directory writable. This is the place where Frost needs to be able to write and create files.
 
-    > cd frost; chmod 777 site/data 
+    > cd Frost; chmod 777 site/data 
 
 ### 3. .htaccess
 
-Then you need to edit the .htaccess file. Look up the line Redirect all requests to index.php.
+Then you need to edit the .htaccess file located in your root-folder. Look up the line Redirect all requests to index.php.
 
     > You need to change: RewriteBase /~dajj12/phpmvc/me7 to your root-foler for the MVC. 
+    > pico .htaccess 
 
 ### 4. Module/Install
 
 And finaly Frost has some modules that need to be initialised. You can do this through a controller. Point your browser to the following link and follow the instructions.
 
-   > your-install-path.com/module/install 
+   > www.your-install-path.com/module/install 
 
 ### 5. Enjoy FrostMVC!
 
@@ -124,4 +127,4 @@ plain(not recommended!) and phpmarkdown . Read more on bbcode, htmlpurify & phpm
 
 4. Save your settings
 
-5. Your content will be visable at www.your-server.com/root-directory/my/the-key-you-defined
+5. Your content will be visable at www.your-server.com/root-directory/my/index/the-key-you-defined
