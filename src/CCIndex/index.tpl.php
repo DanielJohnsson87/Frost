@@ -30,7 +30,7 @@ This interactive tutorial will get you started in notime! <a href="http://try.gi
 <p>First you have to make the data-directory writable. This is the place where Frost needs
 to be able to write and create files.</p>
 <blockquote>
-<code>cd frost; chmod 777 site/data</code>
+<code>cd Frost; chmod 777 site/data</code>
 </blockquote>
 
 

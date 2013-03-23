@@ -21,7 +21,7 @@ You can review its source directly on github: https://github.com/Trobiz/Frost
 Then you need to edit the .htaccess file located in your root-folder. Look up the line Redirect all requests to index.php.
 
     > You need to change: RewriteBase /~dajj12/phpmvc/me7 to your root-foler for the MVC. 
-    > pico .htaccess 
+    > cd Frost; pico .htaccess 
 
 ### 3. Installation
 
