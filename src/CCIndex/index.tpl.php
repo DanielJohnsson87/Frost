@@ -22,7 +22,7 @@ This interactive tutorial will get you started in notime! <a href="http://try.gi
 <u><h2>Step III - .htaccess</h2></u>
 <p>Second, you need to edit the .htaccess file. Look up the line Redirect all requests to index.php.
 	<blockquote>
-	<code> You need to change: RewriteBase /~dajj12/phpmvc/me2 to your root-foler for the MVC. </code>
+	<code> You need to change: RewriteBase /~dajj12/phpmvc/Frost to your root-foler for the MVC. </code>
 </blockquote>
 </p>
 

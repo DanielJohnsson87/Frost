@@ -19,9 +19,8 @@ class CCModules extends CObject implements IController {
     $modules = new CMModules();
     $controllers = $modules->AvailableControllers();
     $allModules = $modules->ReadAndAnalyse();
-    $phpversion = $this->ly->DisplayPhpVersion();
     $this->views->SetTitle('Manage Modules');
-    $this->views->AddInclude(__DIR__ . '/index.tpl.php', array('controllers'=>$controllers, 'phptest'=>$phpversion), 'content');
+    $this->views->AddInclude(__DIR__ . '/index.tpl.php', array('controllers'=>$controllers,), 'content');
     $this->views->AddInclude(__DIR__ . '/sidebar.tpl.php', array('modules'=>$allModules), 'sidebar');
   }
 
@@ -33,11 +32,12 @@ class CCModules extends CObject implements IController {
     $modules = new CMModules();
     $form = new CFormConfigSetup($this);
     $config = new CMConfigSetup();
+    $phpversion = $this->ly->DisplayPhpVersion();
     $form->Check();
     $results = $modules->Install();
     $allModules = $modules->ReadAndAnalyse();
     $this->views->SetTitle('Install Modules');
-    $this->views->AddInclude(__DIR__ . '/install.tpl.php', array('modules'=>$results, 'content', 'form'=>$form, 'config'=>$config));
+    $this->views->AddInclude(__DIR__ . '/install.tpl.php', array('modules'=>$results, 'phptest'=>$phpversion, 'form'=>$form, 'config'=>$config,), 'content');
     $this->views->AddInclude(__DIR__ . '/sidebar.tpl.php', array('modules'=>$allModules), 'sidebar');
   }
 
