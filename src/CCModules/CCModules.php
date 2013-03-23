@@ -30,10 +30,13 @@ class CCModules extends CObject implements IController {
 */
   public function Install() {
     $modules = new CMModules();
+    $form = new CFormConfigSetup($this);
+    $config = new CMConfigSetup();
+    $form->Check();
     $results = $modules->Install();
     $allModules = $modules->ReadAndAnalyse();
     $this->views->SetTitle('Install Modules');
-    $this->views->AddInclude(__DIR__ . '/install.tpl.php', array('modules'=>$results), 'content');
+    $this->views->AddInclude(__DIR__ . '/install.tpl.php', array('modules'=>$results, 'content', 'form'=>$form, 'config'=>$config));
     $this->views->AddInclude(__DIR__ . '/sidebar.tpl.php', array('modules'=>$allModules), 'sidebar');
   }
 

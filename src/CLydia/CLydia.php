@@ -313,4 +313,19 @@ public function CreateUrl($urlOrController=null, $method=null, $arguments=null) 
     }
     return "<header class='header-container clear'> <nav><ul>\n{$items}</ul>\n</nav></header>";
   }
+
+    /**
+     * Shows the current phpversion and outputs if the server php meets the requirements
+     */
+    public function DisplayPhpVersion() {
+if(version_compare(PHP_VERSION, '5.0.0') >= 0) {
+      $phpinfo['info'] =  'Your using PHP 5 or higher, that´s fine! Your version:' . PHP_VERSION . "\n";
+      $phpinfo['class'] = 'success';
+    } else {
+      $phpinfo['info'] =  'Your using an outdated version of PHP. Frost needs at least PHP 5.0.0 to function properly! Your version:' . PHP_VERSION . "\n";
+      $phpinfo['class'] = 'alert';
+
+    }
+    return $phpinfo;
+  }
 }

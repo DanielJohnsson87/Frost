@@ -28,21 +28,21 @@ class CCContent extends CObject implements IController {
 	/**
 	* Edit a selected content, or prepare to create new content if argument is missing.
 	*
-	* @param id integer the id of the content.
+	* @param key integer the key of the content.
 	*/
-	public function Edit($id=null) {
-		$content = new CMContent($id);
+	public function Edit($key=null) {
+		$content = new CMContent($key);
 		$form = new CFormContent($content);
 		$status = $form->Check();
 		if($status === false) {
 			$this->session->AddMessage('notice', 'The form could not be processed.');
-			$this->RedirectToController('edit', $id);
+			$this->RedirectToController('edit', $key);
 		} else if($status === true) {
-			$this->RedirectToController('edit', $content['id']);
+			$this->RedirectToController('edit', $content['key']);
 		}
 
-		$title = isset($id) ? 'Edit' : 'Create';
-		$this->views->SetTitle("$title content: $id");
+		$title = isset($key) ? 'Edit' : 'Create';
+		$this->views->SetTitle("$title content: $key");
 		$this->views->AddInclude(__DIR__ . '/edit.tpl.php', array(
 			'user'=>$this->user,
 			'content'=>$content,

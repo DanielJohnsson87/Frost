@@ -17,8 +17,16 @@ class CCMycontroller extends CObject implements IController {
    * The page about me
    */
   public function Index() {
-    $content = new CMContent(1);
-    $this->views->SetTitle('About me'.htmlEnt($content['title']));
+    
+    if(!empty($this->request->arguments['2'])) {
+    $arguments = $this->request->arguments['2'];
+    } else {
+      $this->request->arguments['2'] = "hello-world";
+    $arguments = $this->request->arguments['2'];
+  }
+
+     $content = new CMContent($arguments);
+    $this->views->SetTitle(htmlEnt($content['title']));
     $this->views->AddInclude(__DIR__ . '/page.tpl.php', array(
                   'content' => $content,
                 ));
@@ -33,7 +41,10 @@ class CCMycontroller extends CObject implements IController {
     $this->views->SetTitle('My blog');
     $this->views->AddInclude(__DIR__ . '/blog.tpl.php', array(
                   'contents' => $content->ListAll(array('type'=>'post', 'order-by'=>'title', 'order-order'=>'DESC')),
-                ));
+                ) , 'content');
+    $this->views->AddInclude(__DIR__ . '/sidebar.tpl.php', array(
+      'content'=> $content->ListAll(array('type'=>'post', 'order-by'=>'title', 'order-order'=>'DESC'))), 'sidebar');
+
   }
 
 

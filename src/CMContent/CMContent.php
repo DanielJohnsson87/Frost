@@ -14,10 +14,10 @@ class CMContent extends CObject implements IHasSQL, ArrayAccess, IModule {
 /**
 * Constructor
 */
-public function __construct($id=null) {
+public function __construct($key=null) {
 	parent::__construct();
-	if($id) {
-		$this->LoadById($id);
+	if($key) {
+		$this->LoadByKey($key);
 	} else {
 		$this->data = array();
 	}
@@ -67,9 +67,9 @@ public function __construct($id=null) {
     try {
       $this->db->ExecuteQuery(self::SQL('drop table content'));
       $this->db->ExecuteQuery(self::SQL('create table content'));
-      $this->db->ExecuteQuery(self::SQL('insert content'), array('hello-world', 'post', 'Hello World', "This is link is made with regular expressions. http://dbwebb.se \n\nTake a look at the function makeClickable() in bootstrap.php.", 'plain', $this->user['id']));
-      $this->db->ExecuteQuery(self::SQL('insert content'), array('hello-world bbcode', 'post', 'Hello World Again, bbcode', "This is another demo post. [b]This post uses bbcode[/b]\n\nThis is another row in this demo post.", 'bbcode', $this->user['id']));
-      $this->db->ExecuteQuery(self::SQL('insert content'), array('hello-world htmlpurify', 'post', 'Hello World Once More, htmlpurify', "This is one more demo post using <a href='http://htmlpurify.com'>htmlpurify.</a>\n\nThis is a javascript test. Should be removed. <javascript>alert('hej');</javascript>", 'htmlpurify', $this->user['id']));
+      $this->db->ExecuteQuery(self::SQL('insert content'), array('hello-world', 'post', 'Hello World', "<h4>This could be your very own first page</h4> <p>Greating your visitors with a few words</p>", 'htmlpurify', $this->user['id']));
+      $this->db->ExecuteQuery(self::SQL('insert content'), array('hello-world-bbcode', 'post', 'Hello World Again, bbcode', "This is another demo post. [b]This post uses bbcode[/b]\n\nThis is another row in this demo post.", 'bbcode', $this->user['id']));
+      $this->db->ExecuteQuery(self::SQL('insert content'), array('hello-world-htmlpurify', 'post', 'Hello World Once More, htmlpurify', "This is one more demo post using <a href='http://htmlpurify.com'>htmlpurify.</a>\n\nThis is a javascript test. Should be removed. <javascript>alert('hej');</javascript>", 'htmlpurify', $this->user['id']));
       $this->db->ExecuteQuery(self::SQL('insert content'), array('home', 'page', 'Home page', "This is a demo page, this could be your personal home-page.\n\nLydia is a PHP-based MVC-inspired Content management Framework, watch the making of Lydia at: http://dbwebb.se/lydia/tutorial.", 'plain', $this->user['id']));
       $this->db->ExecuteQuery(self::SQL('insert content'), array('about', 'page', 'About page', "This is a demo page, this could be your personal about-page.\n\nLydia is used as a tool to educate in MVC frameworks.", 'plain', $this->user['id']));
       $this->db->ExecuteQuery(self::SQL('insert content'), array('download', 'page', 'Download page', "This is a demo page, this could be your personal download-page.\n\nYou can download your own copy of lydia from https://github.com/mosbth/lydia.", 'plain', $this->user['id']));
@@ -162,6 +162,22 @@ public function __construct($id=null) {
   	return true;
   }
 
+  /**
+  * Load content by key
+  *
+  * @param key integer the key of the content
+  * @return boolean true if success else false
+  */
+  public function LoadByKey($key) {
+    $res = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select * by key'), array($key));
+    if(empty($res)) {
+      $this->session->AddMessage('error', "Failed to load content with key '$key'.");
+      return false;
+    } else {
+      $this->data = $res[0];
+    }
+    return true;
+  }
   /**
   *
   * @return array with listing or null if empty

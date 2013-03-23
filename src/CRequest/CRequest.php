@@ -86,11 +86,10 @@ return $url;
       $i++;
     }
     $request = trim(substr($requestUri, $i), '/');
-    // Fix the error that the previous function cant handle $requestUri that contains index.
+    //Fix the error that the previous function cant handle $requestUri that contains controller index.
     if($request =='') {
-    	$request = 'index';
+    	$request = 'my';
     }
-    //Fixes the error that the previous function cant handle 
 
 		//Remove the ?-part from the query when analysing controller/method/arg1/arg2
 		$queryPos = strpos($request, '?');
@@ -115,7 +114,7 @@ return $url;
 
 
 		//Set controller, method and arguments
-		$controller 	=  !empty($splits[0]) ? $splits[0] : 'index';
+		$controller 	=  !empty($splits[0]) ? $splits[0] : 'my';
 		$method			=  !empty($splits[1]) ? $splits[1] : 'index';
 		$arguments 		= $splits;
 		unset($arguments[0], $arguments[1]); //Remove controller $method part from argument list

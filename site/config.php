@@ -120,7 +120,11 @@ $ly->config['theme'] = array(
 	//Add static entries for use in the template file.
 	'data'		=> array(
 			'logo' => '/img/logo-small.png',
-			'copyright' => '<p>Frost &copy; by Daniel Johnsson (danne_j87@hotmail.com)</p>'
+			'copyright' => '<p>Frost &copy; by Daniel Johnsson (danne_j87@hotmail.com)</p>',
+			'title' => 'FrostMVC - A model view controller made by Daniel Johnsson',
+			'footer_first' => '<p>FrostMVC - 2013</p>',
+			'footer_second' =>'<p>Developer Daniel Johnsson</p>',
+			'footer_third' =>'<p>Blekinge Tekniska Högskola</p>',
 			)
 	);
 
@@ -170,18 +174,18 @@ $ly->config['routing'] = array(
  */
 $ly->config['menus'] = array(
 	'navbar' => array(
-	'index' => array('text' => 'Home', 'url' => 'index', 'id' => 'index-'),
-	'guestbook' => array('text' => 'Guestbook', 'url' => 'guestbook', 'id' => 'guestbook-'),
-	'developer' => array('text' => 'Developer', 'url' => 'developer', 'id' => 'developer-'),
-	'user' => array('text' => 'User', 'url' => 'user', 'id' => 'user-'),
-	'content' => array('text' => 'Content', 'url' => 'content', 'id' => 'content-'),
-	'theme' => array('text' => 'Theme', 'url' => 'theme', 'id' => 'theme-'),
-	'module' => array('text' => 'Modules', 'url' => 'module', 'id' => 'module-'),
+	'index' => array('text' => 'Home', 'url' => 'index'),
+	'guestbook' => array('text' => 'Guestbook', 'url' => 'guestbook'),
+	'developer' => array('text' => 'Developer', 'url' => 'developer'),
+	'user' => array('text' => 'User', 'url' => 'user'),
+	'content' => array('text' => 'Content', 'url' => 'content'),
+	'theme' => array('text' => 'Theme', 'url' => 'theme'),
+	'module' => array('text' => 'Modules', 'url' => 'module'),
 	),
 	'small' => array(
-	'index' => array('text' => 'Home', 'url' => 'my/index', 'id' => 'index-'),
-	'guestbook' => array('text' => 'Guestbook', 'url' => 'my/guestbook', 'id' => 'guestbook-'),
-	'blog' => array('text' => 'Blog', 'url' => 'my/blog', 'id' => 'blog-'),
+	'index' => array('text' => 'Home', 'url' => 'my/index'),
+	'guestbook' => array('text' => 'Guestbook', 'url' => 'my/guestbook'),
+	'blog' => array('text' => 'Blog', 'url' => 'my/blog'),
 
 	));
 

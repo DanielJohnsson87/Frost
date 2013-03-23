@@ -1,4 +1,3 @@
-
 <h1>Content Controller Index</h1>
 <p>One controller to manage the actions for content, mainly list, create, edit, delete, view.</p>
 
@@ -6,7 +5,7 @@
 <?php if($contents != null):?>
   <ul>
   <?php foreach($contents as $val):?>
-    <li><?=$val['id']?>, <?=$val['title']?> by <?=$val['owner']?> <a href='<?=create_url("content/edit/{$val['id']}")?>'>edit</a> <a href='<?=create_url("page/view/{$val['id']}")?>'>view</a>
+    <li><?=$val['id']?>, <?=$val['title']?> by <?=$val['owner']?> <a href='<?=create_url("content/edit/{$val['key']}")?>'>edit</a> <a href='<?=create_url("page/view/{$val['key']}")?>'>view</a>
   <?php endforeach; ?>
   </ul>
 <?php else:?>

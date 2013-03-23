@@ -42,18 +42,16 @@
   </div>
 </div>
 
-<div id='outer-wrap-footer'>
-	<?php if(region_has_content('footer-first', 'footer-second', 'footer-third')): ?>
 
+</div>
+<div id='outer-wrap-footer'>
   <div id='inner-wrap-footer'>
 
-    <div id='footer-first'><?=render_views('footer-first')?></div>
-    <div id='footer-second'><?=render_views('footer-second')?></div>
-    <div id='footer-third'><?=render_views('footer-third')?></div>
+    <div id='footer-first'><?=render_views('footer-first')?><?=$footer_first;?></div>
+    <div id='footer-second'><?=render_views('footer-second')?><?=$footer_second;?></div>
+    <div id='footer-third'><?=render_views('footer-third')?><?=$footer_third;?></div>
 
   </div>
-  <?php endif; ?>
-</div>
 </div>
 </body>
 </html>
