@@ -19,8 +19,9 @@ class CCModules extends CObject implements IController {
     $modules = new CMModules();
     $controllers = $modules->AvailableControllers();
     $allModules = $modules->ReadAndAnalyse();
+    $phpversion = $this->ly->DisplayPhpVersion();
     $this->views->SetTitle('Manage Modules');
-    $this->views->AddInclude(__DIR__ . '/index.tpl.php', array('controllers'=>$controllers), 'content');
+    $this->views->AddInclude(__DIR__ . '/index.tpl.php', array('controllers'=>$controllers, 'phptest'=>$phpversion), 'content');
     $this->views->AddInclude(__DIR__ . '/sidebar.tpl.php', array('modules'=>$allModules), 'sidebar');
   }
 
