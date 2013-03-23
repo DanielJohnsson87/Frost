@@ -25,14 +25,14 @@ Then you need to edit the .htaccess file located in your root-folder. Look up th
 
 ### 3. Installation
 
-Go to www.your-install-path.com/index/index or follow the instructions bellow.  
-
 First you have to make the data-directory writable. This is the place where Frost needs to be able to write and create files.
 
     > cd Frost; chmod 777 site/data 
 
 
 ### 4. Module/Install
+
+Go to www.your-install-path.com/root-directory/index/index or follow the instructions bellow.  
 
 And finaly Frost has some modules that need to be initialised. You can do this through a controller. Point your browser to the following link and follow the instructions.
 
