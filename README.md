@@ -36,7 +36,7 @@ Go to www.your-install-path.com/root-directory/index/index or follow the instruc
 
 And finaly Frost has some modules that need to be initialised. You can do this through a controller. Point your browser to the following link and follow the instructions.
 
-   > www.your-install-path.com/module/install 
+   > www.your-install-path.com/root-directory/module/install 
 
 ### 5. Enjoy FrostMVC!
 
