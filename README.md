@@ -38,6 +38,8 @@ And finaly Frost has some modules that need to be initialised. You can do this t
 
 ### 5. Enjoy FrostMVC!
 
+Visit your startpage at www.your-install-path.com/root-directory/
+
 
 
 How to Modify FrostMVC!
